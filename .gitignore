@@ -28,3 +28,5 @@ env/
 build/
 dist/
 *.egg-info/
+
+poke.db
