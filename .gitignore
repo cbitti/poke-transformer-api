@@ -29,4 +29,4 @@ build/
 dist/
 *.egg-info/
 
-poke.db
+*.db
