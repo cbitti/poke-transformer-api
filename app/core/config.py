@@ -5,6 +5,7 @@ class Settings(BaseSettings):
     API_V1_PREFIX: str = "/api/v1"
     DEBUG: bool = True
     PROJECT_NAME: str = "Poke Transformer API"
+    DATABASE_URL: str = "sqlite:///./poke.db"
     # Later add DB URL, etc
 
     model_config = SettingsConfigDict(
