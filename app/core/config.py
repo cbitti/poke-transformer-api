@@ -6,7 +6,7 @@ class Settings(BaseSettings):
     DEBUG: bool = True
     PROJECT_NAME: str = "Poke Transformer API"
     DATABASE_URL: str = "sqlite:///./poke.db"
-    # Later add DB URL, etc
+    TEST_DATABASE_URL: str | None = None  # optional, only for tests
 
     model_config = SettingsConfigDict(
         env_file=".env",
