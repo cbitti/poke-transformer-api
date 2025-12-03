@@ -6,7 +6,7 @@ from app.core.config import settings
 
 def create_application() -> FastAPI:
     # Show interactive docs in non-production environments only
-    show_docs = settings.APP_ENV != "production"
+    show_docs = True
 
     app = FastAPI(
         title=settings.PROJECT_NAME,
