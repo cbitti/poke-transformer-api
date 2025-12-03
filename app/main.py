@@ -5,8 +5,18 @@ from app.core.config import settings
 
 
 def create_application() -> FastAPI:
-    app = FastAPI(title=settings.PROJECT_NAME, debug=settings.DEBUG)
+    # Show interactive docs in non-production environments only
+    show_docs = settings.APP_ENV != "production"
 
+    app = FastAPI(
+        title=settings.PROJECT_NAME,
+        debug=settings.DEBUG,
+        docs_url="/docs" if show_docs else None,
+        redoc_url=None,
+        openapi_url="/openapi.json" if show_docs else None,
+    )
+
+    # Mount versioned API
     app.include_router(api_router, prefix=settings.API_V1_PREFIX)
 
     return app
