@@ -1,19 +1,39 @@
 # poke-transformer-api
 
-A FastAPI-based web service that:
+A small FastAPI service that calls [PokeAPI](https://pokeapi.co/), computes custom
+"power" metrics for a Pokémon, stores the result in PostgreSQL, and returns the
+saved record.
 
-- Accepts POST requests with a Pokémon name.
-- Calls the public PokeAPI to fetch data about that Pokémon.
-- Applies a custom transformation (e.g. compute power index / tier).
-- Stores the transformed result in the database.
+## Features
 
-## Tech stack (planned)
+- `POST /api/v1/pokemon/`
+  - Accepts a Pokémon name (e.g. `"pikachu"`).
+  - Fetches base stats from PokeAPI.
+  - Computes:
+    - `total_base_stats`
+    - a custom `power_index`
+    - a `tier` classification (`S`, `A`, `B`, `C`).
+  - Persists the record in PostgreSQL and returns it.
+- Auto-generated OpenAPI docs at `/docs` and `/openapi.json`.
+- Separate dev and test databases (PostgreSQL).
 
-- Python (FastAPI)
-- SQLite (dev) → PostgreSQL (later)
+## Tech stack
+
+- Python 3.11+
+- FastAPI
+- SQLAlchemy + Alembic
+- PostgreSQL (psycopg driver)
+- httpx (PokeAPI client)
 - Poetry for dependency management
-- SQLAlchemy + Alembic for database/migrations
+- pytest (+ pytest-asyncio) for tests
 
-## Development
+## Getting started (development)
 
-Instructions will be filled in as we build the project step by step.
+### 1. Clone and install
+
+```bash
+git clone <your-repo-url> poke-transformer-api
+cd poke-transformer-api
+
+# Install dependencies
+poetry install
